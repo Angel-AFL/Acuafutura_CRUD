@@ -85,16 +85,21 @@ class EmpleadoController extends Controller
         return response()->json($data, 200);
     }
 
-    public function apiEditarEmpleado(Request $request, Empleado $id){
+    public function apiEditarEmpleado(Request $request, $id)
+    {
         $empleado = Empleado::find($id);
-        if($request->has('nombre')){
-            $empleado->nombre = $request->nombre;
+
+        if (!$empleado) {
+            return response()->json([
+                'message' => 'Empleado no encontrado',
+                'status' => 404
+            ], 404);
         }
-        $data = [
-            'message' => 'Empleado actualizado',
+        $empleado->update($request->all());
+        return response()->json([
+            'message' => 'Empleado actualizado con éxito',
             'empleado' => $empleado,
             'status' => 200
-        ];
-        return response()->json($data, 200);
+        ], 200);
     }
 }

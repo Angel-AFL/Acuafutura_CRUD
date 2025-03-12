@@ -11,4 +11,4 @@ Route::get('/user', function (Request $request) {
 Route::get('/verEmpleados', [EmpleadoController::class, 'apiVerEmpleados']);
 Route::get('/crearEmpleado', [EmpleadoController::class, 'apiCrearEmpleado']);
 Route::get('/verEmpleado/{id}', [EmpleadoController::class, 'apiVerEmpleado']);
-Route::get('/editarEmpleado', [EmpleadoController::class, 'apiEditarEmpleado']);
+Route::get('/editarEmpleado/{id}', [EmpleadoController::class, 'apiEditarEmpleado']);
